@@ -90,7 +90,7 @@ def editItem(category_id, item_id):
     else:
         return render_template('edititem.html', category=category, item=editedItem)
 
-#Upvote Item
+#Upvote Item. Checks if the user has already liked or disliked the item and only allow to do the opposite of what he previously did
 @item.route('/categories/<int:category_id>/<int:item_id>/upvote', methods=['POST'])
 def upvoteItem(category_id, item_id):
     if 'username' not in login_session:
@@ -121,7 +121,7 @@ def upvoteItem(category_id, item_id):
         flash('Error in the Upvote process')
         return redirect(url_for('item.showItem', category_id = category_id, item_id=item_id))
 
-#DownVote Item
+#DownVote Item. Checks if the user has already liked or disliked the item and only allow to do the opposite of what he previously did
 @item.route('/categories/<int:category_id>/<int:item_id>/downvote', methods=['POST'])
 def downvoteItem(category_id, item_id):
     if 'username' not in login_session:
