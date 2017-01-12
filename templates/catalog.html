@@ -1,0 +1,104 @@
+{% extends "main.html" %}
+{% block content %}
+
+<header class="jumbotron main home">
+  <div class="container fix-overlapping">
+		<div class="row">
+      {% if 'username' not in session %}
+		  <div class="col-xs-12 col-sm-8 intro-column">
+				<h1 class="text-center">Catalog</h1>
+		  </div>
+			<div class="col-xs-12 col-sm-4 login-column text-center">
+			  <h1 class="text-center">Login</h1>
+        <!-- <div id="signInButton" class="text-center">
+          <span
+          class="g-signin"
+          data-scope="openid email"
+          data-clientid="272403305374-no7q75fnf5s73ntntoruvpvh0bpeo3ht.apps.googleusercontent.com"
+          data-redirecturi="postmessage"
+          data-accesstype="offline"
+          data-width="60"
+          data-height="60"
+          data-longtitle="true"
+          data-theme="dark"
+          data-cookiepolicy="single_host_origin"
+          data-callback="signInCallback"
+          data-approvalprompt="force"></span>
+        </div> -->
+
+        <div class="g-signin2 g-fix" data-onsuccess="onSignIn" data-width="100" data-height="22"></div>
+
+        <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();" data-size="medium">
+        <a href='javascript:sendTokenToServer()'>Login with Facebook</a>
+        </fb:login-button>
+			</div>
+      {% else %}
+      <div class="col-xs-12">
+        <h1 class="text-center">Catalog</h1>
+      </div>
+      {% endif %}
+		</div>
+  </div>
+</header>
+
+<div class="container content-container">
+
+	{% if 'username' in session %}
+	<div class="row user-actions">
+		<div class="col-xs-12 col-md-4">
+			<a href="{{url_for('category.newCategory')}}">
+				<button class="btn btn-default">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Category
+				</button>
+			</a>
+		</div>
+	</div>
+	{% endif %}
+
+  <section class="popular-items">
+    <header>
+      <h2 class="text-center">Popular Items</h2>
+    </header>
+    <div class="row popular-items-row">
+      {% if popularItems != [] %}
+        {% for item in popularItems %}
+          <div class="col-xs-12 col-sm-3">
+            <a class="no-decoration" href = "{{url_for('item.showItem', category_id = item.category_id, item_id = item.id)}}">
+            {% include 'item-template.html' %}
+          </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-xs-12">
+          <h2>No Items in the Catalog</h2>
+        </div>
+    {% endif %}
+  </div>
+  </section>
+
+
+	<br><br>
+
+<section class="categories">
+  <header>
+    <h2 class="text-center">Categories</h2>
+  </header>
+  <div class="row categories-row">
+  {% if categories != [] %}
+      {% for category in categories %}
+        <div class="col-xs-12 col-sm-3">
+          <a class="no-decoration" href = "{{url_for('item.showCategoryItems', category_id = category.id)}}">
+          {% include 'category-template.html' %}
+        </a>
+        </div>
+      {% endfor %}
+    {% else %}
+    <div class="col-xs-12">
+      <h2>No Categories in the Catalog</h2>
+    </div>
+  </div>
+  {% endif %}
+</div>
+</section>
+
+{% endblock %}

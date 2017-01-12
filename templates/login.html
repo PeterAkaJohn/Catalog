@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<header class="jumbotron main home">
+	<div class="container fix-overlapping">
+		<div class="row">
+			<div class="col-xs-12 title-padding">
+				<h1 class="text-center">Catalog</h1>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="container">
+  <h2 class="fix-login text-center">Login</h2>
+  <div class="row text-center login-row">
+    <div class="col-xs-12 col-sm-4">
+      <div id="signInButton">
+        <span
+        class="g-signin"
+        data-scope="openid email"
+        data-clientid="272403305374-no7q75fnf5s73ntntoruvpvh0bpeo3ht.apps.googleusercontent.com"
+        data-redirecturi="postmessage"
+        data-accesstype="offline"
+        data-width="240"
+        data-height="50"
+        data-longtitle="true"
+        data-theme="dark"
+        data-cookiepolicy="single_host_origin"
+        data-callback="signInCallback"
+        data-approvalprompt="force"></span>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <div class="g-signin2 g-fix" data-onsuccess="onSignIn" data-theme="dark"></div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+      <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
+      <a href='javascript:sendTokenToServer()'>Login with Facebook</a>
+    </fb:login-button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

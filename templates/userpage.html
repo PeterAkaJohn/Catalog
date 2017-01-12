@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<header class="jumbotron home main">
+  <div class="container fix-overlapping">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <img class="img-circle img-responsive" src="{{user.picture}}" width="100px" height="100px" alt="">
+      </div>
+      <div class="col-xs-12 col-sm-8">
+        <h2>
+          {{user.name}}
+        </h2>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <h2>Items</h2>
+  <div class="row items-row">
+    {% if items != [] %}
+    {% for item in items %}
+      <div class="col-xs-12 col-sm-3">
+        <a class="no-decoration" href = "{{url_for('item.showItem', category_id = item.category_id, item_id = item.id)}}">
+        {% include 'item-template.html' %}
+      </a>
+      </div>
+    {% endfor %}
+    {% else %}
+    <h2>The User has not added any item</h2>
+    {% endif %}
+  </div>
+
+  <h2>Categories</h2>
+  <div class="row categories-row">
+    {% if categories != [] %}
+    {% for category in categories %}
+      <div class="col-xs-12 col-sm-3">
+        <a class="no-decoration" href = "{{url_for('item.showCategoryItems', category_id = category.id)}}">
+        {% include 'category-template.html' %}
+      </a>
+      </div>
+    {% endfor %}
+    {% else %}
+    <h2>The User has not added any category</h2>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

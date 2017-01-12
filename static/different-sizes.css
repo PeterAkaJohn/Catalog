@@ -1,0 +1,19 @@
+@media screen and (max-width:767px) {
+    .creator-image {
+        max-width: 40vw;
+        max-height: 40vh;
+        display: block;
+        margin: 15px auto;
+    }
+
+    .message {
+        border-radius: 10px;
+        width: 100%;
+        box-shadow: 0 10px 6px -6px #777;
+        background-color: blue;
+    }
+
+    .col-right {
+      right: 0;
+    }
+}
