@@ -27,8 +27,8 @@ def categoryJSON(category_id):
 
 @api.route('/categories/<int:category_id>/<int:item_id>/JSON')
 def categoryItemJSON(category_id, item_id):
-    Item = session.query(Item).filter_by(id=item_id).one()
-    return jsonify(Item=Item.serialize)
+    item = session.query(Item).filter_by(id=item_id).one()
+    return jsonify(Item=item.serialize)
 
 
 @api.route('/categories/JSON')

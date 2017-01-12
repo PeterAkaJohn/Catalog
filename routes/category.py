@@ -5,7 +5,6 @@ from database_setup import Base, Category, Item, User
 from flask import session as login_session
 import random
 import string
-
 # Connect to Database and create database session
 engine = create_engine('sqlite:///catalog.db')
 Base.metadata.bind = engine
