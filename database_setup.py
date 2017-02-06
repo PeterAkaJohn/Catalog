@@ -35,7 +35,7 @@ class Item(Base):
     __tablename__ = 'item'
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
-    description = Column(String(250))
+    description = Column(String)
     price = Column(String(8))
     picture = Column(String)
     upvote = Column(Integer)
@@ -66,6 +66,6 @@ class Rating(Base):
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine('postgresql://catalog:catalog@localhost:5432/catalog')
 
 Base.metadata.create_all(engine)
