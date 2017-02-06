@@ -1,1 +1,14 @@
-from project import app
+from flask import Flask
+from routes import category, item, api, auth, user
+
+app = Flask(__name__)
+
+app.register_blueprint(category)
+app.register_blueprint(item)
+app.register_blueprint(api)
+app.register_blueprint(auth)
+app.register_blueprint(user)
+
+if __name__ == '__main__':
+    app.debug = True
+    app.run()
