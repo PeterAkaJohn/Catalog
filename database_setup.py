@@ -66,6 +66,6 @@ class Rating(Base):
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
-engine = create_engine('postgresql://catalog:catalog@localhost:5432/catalog')
+engine = create_engine('sqlite:///catalog.db')
 
 Base.metadata.create_all(engine)

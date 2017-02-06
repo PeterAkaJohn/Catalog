@@ -8,7 +8,7 @@ from util import Util
 Util = Util()
 
 # Connect to Database and create database session
-engine = create_engine('postgresql://catalog:catalog@localhost:5432/catalog')
+engine = create_engine('sqlite:///catalog.db')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
